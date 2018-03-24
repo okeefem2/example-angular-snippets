@@ -26,7 +26,7 @@ import {
 })
 export class SubmitButtonComponent {
 
-  // The current status of the button text
+  // The current state of the button text
   buttonTextState = 'shown';
   // The text currently being show
   buttonText = "ADD TO CART";
@@ -47,7 +47,7 @@ export class SubmitButtonComponent {
     this.buttonTextState = 'transitioning';
     this.transitionButtonText = 'ADDING...';
 
-    // Do whatever logic here. If it is asynchronous, put the remaining transitions in your subscribe/then callbacks
+    // Do whatever logic here. If it is asynchronous, put the remaining code in your subscribe/then callbacks
     // Note if your logic is snappy, you could leave the timeouts in to simulate the animation for a better UX
 
     setTimeout(() => {
