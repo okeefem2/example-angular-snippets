@@ -1,0 +1,8 @@
+<button class="sbmt-btn"
+        (click)="onAddToCart()">
+  <div class="sbmt-btn-txt"
+             [@buttonTextStateTrigger]="buttonTextState"
+             (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">
+    {{ buttonText }}
+  </div>
+</button>
