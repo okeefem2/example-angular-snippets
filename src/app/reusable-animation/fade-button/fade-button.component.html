@@ -1,0 +1,11 @@
+<div class="snippet-content" fxLayout="column" fxLayoutAlign="space-around center">
+  <button class="sbmt-btn"
+          (click)="onAddToCart()">
+    <div class="sbmt-btn-txt"
+         [@trigger]="state"
+         (@trigger.done)="buttonTextTransitioned($event)">
+      {{ buttonText }}
+    </div>
+  </button>
+</div>
+

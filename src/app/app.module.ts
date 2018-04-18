@@ -18,6 +18,8 @@ import { ObsMergeComponent } from './obs-merge/obs-merge.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReusableAnimationComponent } from './reusable-animation/reusable-animation.component';
 import { PipeVsFunctionComponent } from './pipe-vs-function/pipe-vs-function.component';
+import { FadeBoxComponent } from './reusable-animation/fade-box/fade-box.component';
+import { FadeButtonComponent } from './reusable-animation/fade-button/fade-button.component';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -30,7 +32,9 @@ const appRoutes: Routes = [
     SubmitButtonComponent,
     ObsMergeComponent,
     ReusableAnimationComponent,
-    PipeVsFunctionComponent
+    PipeVsFunctionComponent,
+    FadeBoxComponent,
+    FadeButtonComponent
   ],
   imports: [
     FlexLayoutModule,
