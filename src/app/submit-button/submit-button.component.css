@@ -3,6 +3,7 @@ button.sbmt-btn {
   border: 2px solid #272727;
   cursor: pointer;
   width: 130px;
+  background: #ffffff;
 }
 
 div.sbmt-btn-txt {
@@ -12,7 +13,7 @@ div.sbmt-btn-txt {
 
 button.sbmt-btn:hover {
   background: #272727;
-  color: white;
+  color: #ffffff;
 }
 
 button {
