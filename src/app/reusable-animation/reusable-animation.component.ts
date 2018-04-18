@@ -8,9 +8,9 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'submit-button',
-  templateUrl: './submit-button.component.html',
-  styleUrls: ['./submit-button.component.css'],
+  selector: 'reusable-animation',
+  templateUrl: './reusable-animation.component.html',
+  styleUrls: ['./reusable-animation.component.css'],
   animations: [
     trigger('buttonTextStateTrigger', [
       state('shown', style({
@@ -24,14 +24,14 @@ import {
     ])
   ]
 })
-export class SubmitButtonComponent {
+export class ReusableAnimationComponent {
 
   // The current state of the button text
   buttonTextState = 'shown';
   // The text currently being show
-  buttonText = 'ADD TO CART';
+  buttonText = "ADD TO CART";
   // The text that will be shown when the transition is finished
-  transitionButtonText = 'ADD TO CART';
+  transitionButtonText = "ADD TO CART";
 
   /**
    * Respond to the transition event of the button text
