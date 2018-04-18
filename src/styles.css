@@ -6,18 +6,6 @@
   cursor: pointer;
 }
 
-.example-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
-}
-
 .example-sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
@@ -37,12 +25,12 @@
 .card {
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 50%;
 }
 
 .snippet-content {
   margin-top: 10px;
 }
-
 
 /**
  * Reused button css

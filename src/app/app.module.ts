@@ -20,11 +20,14 @@ import { ReusableAnimationComponent } from './reusable-animation/reusable-animat
 import { PipeVsFunctionComponent } from './pipe-vs-function/pipe-vs-function.component';
 import { FadeBoxComponent } from './reusable-animation/fade-box/fade-box.component';
 import { FadeButtonComponent } from './reusable-animation/fade-button/fade-button.component';
+import { FormsModule } from '@angular/forms';
+import { AveragePipe } from './pipe-vs-function/average.pipe';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
   { path: 'obs-merge', component: ObsMergeComponent },
-  { path: 'reusable-animation', component: ReusableAnimationComponent }
+  { path: 'reusable-animation', component: ReusableAnimationComponent },
+  { path: 'pipe-vs-function', component: PipeVsFunctionComponent }
 ];
 @NgModule({
   declarations: [
@@ -34,14 +37,16 @@ const appRoutes: Routes = [
     ReusableAnimationComponent,
     PipeVsFunctionComponent,
     FadeBoxComponent,
-    FadeButtonComponent
+    FadeButtonComponent,
+    AveragePipe
   ],
   imports: [
     FlexLayoutModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
