@@ -34,3 +34,8 @@
 .center {
   text-align: center;
 }
+
+.card {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

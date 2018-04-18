@@ -15,6 +15,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { AppComponent } from './app.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { ObsMergeComponent } from './obs-merge/obs-merge.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
     ObsMergeComponent
   ],
   imports: [
+    FlexLayoutModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
     BrowserModule,

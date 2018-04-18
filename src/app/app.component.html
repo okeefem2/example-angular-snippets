@@ -1,11 +1,11 @@
-<div class="example-container">
+<div class="example-container" fxLayout="column" style="width: 100%; min-height:98vh">
 
   <mat-toolbar color="primary" class="example-toolbar">
     <mat-icon class="button-icon" (click)="snav.toggle()">menu</mat-icon>
     <h1>Angular Snippets</h1>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav-container class="example-sidenav-container" fxFlex>
     <mat-sidenav #snav mode="over">
       <mat-nav-list>
         <a mat-list-item routerLink="/submit-button">Submit Button</a>
@@ -14,8 +14,15 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div fxLayout="row" fxLayoutAlign="center" fxFlexFill>
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <router-outlet></router-outlet>
+        </div>
+        <div fxFlex="20"></div>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
 
