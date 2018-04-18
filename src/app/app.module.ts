@@ -21,7 +21,8 @@ import { PipeVsFunctionComponent } from './pipe-vs-function/pipe-vs-function.com
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
-  { path: 'obs-merge', component: ObsMergeComponent }
+  { path: 'obs-merge', component: ObsMergeComponent },
+  { path: 'reusable-animation', component: ReusableAnimationComponent }
 ];
 @NgModule({
   declarations: [

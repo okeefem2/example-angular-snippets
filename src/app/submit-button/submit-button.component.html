@@ -1,8 +1,12 @@
-<button class="sbmt-btn"
-        (click)="onAddToCart()">
-  <div class="sbmt-btn-txt"
-             [@buttonTextStateTrigger]="buttonTextState"
-             (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">
-    {{ buttonText }}
-  </div>
-</button>
+<div class="snippet-content" fxLayout="column" fxLayoutAlign="space-around center" >
+  <button class="sbmt-btn"
+          (click)="onAddToCart()">
+    <div class="sbmt-btn-txt"
+         [@buttonTextStateTrigger]="buttonTextState"
+         (@buttonTextStateTrigger.done)="buttonTextTransitioned($event)">
+      {{ buttonText }}
+    </div>
+  </button>
+</div>
+
+
