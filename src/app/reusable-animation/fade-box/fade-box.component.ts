@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { fadeInOut } from '../animations';
+import { Animations } from '../animations';
+
+export function getAnimations() {
+  return Animations.fadeInOut({ shownOpacity: 1, fadedOpacity: 0, transitionTime: '1200ms'});
+}
 
 @Component({
   selector: 'fade-box',
   templateUrl: './fade-box.component.html',
   styleUrls: ['./fade-box.component.css'],
-  animations: [fadeInOut({ shownOpacity: 1, fadedOpacity: 0, transitionTime: '1200ms'})]
+  animations: [getAnimations]
 })
 export class FadeBoxComponent {
   // The current state of the button text

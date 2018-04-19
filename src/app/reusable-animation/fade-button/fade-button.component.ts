@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { fadeInOut } from '../animations';
+import { Animations } from '../animations';
+
+export function getAnimations() {
+  return Animations.fadeInOut({ shownOpacity: 1, fadedOpacity: 0.3, transitionTime: '600ms'});
+}
 
 @Component({
   selector: 'fade-button',
   templateUrl: './fade-button.component.html',
   styleUrls: ['./fade-button.component.css'],
-  animations: [fadeInOut({ shownOpacity: 1, fadedOpacity: 0.3, transitionTime: '600ms'})]
+  animations: [getAnimations]
 })
 export class FadeButtonComponent {
 
