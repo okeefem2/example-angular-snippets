@@ -1,0 +1,8 @@
+<mat-form-field class="form-field">
+    <input matInput placeholder="Name" [(ngModel)]="score.name">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <input matInput placeholder="Score" [(ngModel)]="score.score">
+  </mat-form-field>
+  <button class="add-button" mat-raised-button (click)="onScoreSaved()" color="primary">SAVE</button>
+

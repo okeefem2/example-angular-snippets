@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { mergeMap } from 'rxjs/operators';
+import { interval } from 'rxjs/observable/interval';
+
+import { mergeMap, filter } from 'rxjs/operators';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
@@ -35,5 +37,29 @@ export class ObsMergeComponent implements OnInit {
       source1$.pipe(mergeMap(mergeFun)),
       source2$.pipe(mergeMap(mergeFun))
     );
+
+    const source = interval(500);
+
+    function filterOdd(source) {
+      return source.pipe(
+        filter((s: number) => s % 2 === 0)
+      );
+      // return create((observer) => {
+      //   source.subscribe(
+      //     (value) => {
+      //       if (value % 2 === 0) {
+      //         observer.next(value);
+      //       }
+      //     }
+      //   )
+      // })
+    }
+
+    const odds = filterOdd(source);
+
+    odds.subscribe(function(x) {
+      console.log(x);
+    });
+
   }
 }

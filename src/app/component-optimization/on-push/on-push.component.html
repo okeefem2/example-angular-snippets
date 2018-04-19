@@ -1,0 +1,25 @@
+<mat-card *ngFor="let score of scores; let i = index" class="card">
+  <mat-form-field class="form-field">
+    <input matInput placeholder="Name" [(ngModel)]="score.name">
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <input matInput placeholder="Score" [(ngModel)]="score.score">
+  </mat-form-field>
+  <button mat-raised-button (click)="removeScore(i)" color="primary">REMOVE</button>
+</mat-card>
+<button class="add-button" mat-raised-button (click)="addScore()" color="primary">ADD</button>
+<div>
+     Total: {{ calculateTotal() }}
+</div>
+<div>
+  Average: {{  getScoreValues() | averageonpush }}
+</div>
+<div>
+  Total Call Calculation Count: {{ totalCalls }}
+</div>
+<div>
+  Average Calculation Count: {{ averageCalls }}
+</div>
+<div>
+  {{ ((1 - (averageCalls / totalCalls)) * 100).toFixed(2) }}% Savings
+</div>

@@ -81,3 +81,12 @@ h1.example-app-name {
   flex: 1 0 auto;
   margin-top: 64px;
 }
+
+.form-field {
+  margin-right: 5px;
+}
+
+.add-button {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}

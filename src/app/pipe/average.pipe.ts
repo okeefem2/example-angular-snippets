@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Pipe, PipeTransform } from '@angular/core';
-import { PipeVsFunctionComponent } from './pipe-vs-function.component';
+import { PipeVsFunctionComponent } from '../component-optimization/pipe-vs-function/pipe-vs-function.component';
 
 @Pipe({
   name: 'average'
