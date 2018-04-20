@@ -26,41 +26,52 @@ export class CachingPatternComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.beginDate = new FormControl(new Date());
-    this.endDate = new FormControl(new Date());
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const beginningOfMonth = new Date(today);
+    beginningOfMonth.setDate(1);
+    this.beginDate = new FormControl(beginningOfMonth);
+    this.endDate = new FormControl(today);
     this.dateData$ = observableOf(dateData);
     this.search$ = new Subject();
 
     this.search$.pipe(
       map(() => ({beginDate: this.beginDate.value, endDate: this.endDate.value})),
-      scan((state, searchDates) => {
-        if (state.beginDate === searchDates.beginDate && 
-            state.endDate === searchDates.endDate) {
-            state.cached = true;
+      scan((state, searchDates: any) => {
+        debugger;
+        if (state.search && state.search.add) {
+          state.searchCache.push(state.search);
+        }
+        const filteredSearchCache = state.searchCache.filter(s => s.beginDate.getTime() === searchDates.beginDate.getTime() && 
+          s.endDate.getTime() === searchDates.endDate.getTime())
+        if (filteredSearchCache.length > 0) {
+          state.search = filteredSearchCache[0];
         } else {
-          state = { ...searchDates, cached: false };
-          this.datesSearched.push(searchDates);
+          state.search = searchDates;
         }
         return state;
-      }, { beginDate: null, endDate: null, cached: false }),
+      }, { searchCache: [], search: null }),
       switchMap((state: any) => {
-        if (state.cached === true) {
-          this.cachedResultsReturned ++;
-          return observableOf(this.data);
-        }
-        this.newResultsReturned ++;
         debugger;
-        return this.dateData$.pipe(
-          // use filter here instead for from
-          map((data: any) => {
-            debugger;
-            // use for from
-            // return this.dateIsBetween(state.beginDate, state.endDate, new Date(data.date))
-            return data.filter(d => this.dateIsBetween(state.beginDate, state.endDate, new Date(d.date)))
-          })
-        )
+        if (state.search.data) {
+          state.search.add = false;
+          this.cachedResultsReturned ++;
+        } else {
+          state.search.add = true;
+          this.newResultsReturned ++;
+          state.search.data = this.dateData$.pipe(
+            map((data: any) => {
+              return data.filter(d => this.dateIsBetween(state.search.beginDate, state.search.endDate, new Date(d.date)))
+            })
+          )
+        }
+        return state.search.data
       }),
-    ).subscribe(d => this.data = d);
+    ).subscribe(d => {
+      debugger;
+      this.data = d
+    }
+    ); 
   }
 // think about how to concat the last and the gap together when cached
 }
