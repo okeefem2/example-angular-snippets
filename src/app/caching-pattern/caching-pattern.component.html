@@ -1,0 +1,24 @@
+<mat-form-field>
+  <input matInput [matDatepicker]="beginPicker" placeholder="Begin date" [formControl]="beginDate">
+  <mat-datepicker-toggle matSuffix [for]="beginPicker"></mat-datepicker-toggle>
+  <mat-datepicker #beginPicker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="endPicker" placeholder="End date" [formControl]="endDate">
+  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+  <mat-datepicker #endPicker></mat-datepicker>
+</mat-form-field>
+
+<button mat-raised-button (click)="search$.next()" color="primary">SEARCH</button>
+<div>
+    Cached Results Returned: {{ cachedResultsReturned }}
+</div>
+<div>
+    New Results Returned: {{ newResultsReturned }}
+</div>
+<div *ngFor="let d of data">
+  <div>
+      {{ d.id }} | {{ d.date }}
+  </div>
+</div>

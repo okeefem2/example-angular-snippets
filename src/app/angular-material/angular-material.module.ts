@@ -7,7 +7,9 @@ import {
   MatIconModule, MatInputModule,
   MatListModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 const appMaterialModules = [
@@ -19,7 +21,9 @@ const appMaterialModules = [
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 @NgModule({
   imports: appMaterialModules,

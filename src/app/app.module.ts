@@ -19,7 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReusableAnimationComponent } from './reusable-animation/reusable-animation.component';
 import { FadeBoxComponent } from './reusable-animation/fade-box/fade-box.component';
 import { FadeButtonComponent } from './reusable-animation/fade-button/fade-button.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AveragePipe } from './pipe/average.pipe';
 
 import { ComponentOptimizationComponent } from './component-optimization/component-optimization.component';
@@ -31,6 +31,7 @@ import { ScoreFormComponent } from './component-optimization/on-push-optimizatio
 import { AverageOnPushOptPipe } from './pipe/average-onpush-opt.pipe';
 import { environment } from '../environments/environment.prod';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { CachingPatternComponent } from './caching-pattern/caching-pattern.component';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   { path: 'reusable-animation', component: ReusableAnimationComponent },
   { path: 'pipe-v-function', component: PipeVsFunctionComponent },
   { path: 'pipe-v-function-onpush', component: OnPushComponent },
-  { path: 'onpush-optimization', component: OnPushOptimizationComponent }
+  { path: 'onpush-optimization', component: OnPushOptimizationComponent },
+  { path: 'caching-pattern', component: CachingPatternComponent }
 ];
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     OnPushComponent,
     ComponentOptimizationComponent,
     OnPushOptimizationComponent,
-    ScoreFormComponent
+    ScoreFormComponent,
+    CachingPatternComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -64,6 +67,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    ReactiveFormsModule,
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
   ],
   providers: [],
