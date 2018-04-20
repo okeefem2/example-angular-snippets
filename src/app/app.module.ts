@@ -29,6 +29,8 @@ import { PipeVsFunctionComponent } from './component-optimization/pipe-vs-functi
 import { OnPushOptimizationComponent } from './component-optimization/on-push-optimization/on-push-optimization.component';
 import { ScoreFormComponent } from './component-optimization/on-push-optimization/score-form/score-form.component';
 import { AverageOnPushOptPipe } from './pipe/average-onpush-opt.pipe';
+import { environment } from '../environments/environment.prod';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
   ],
   providers: [],
   bootstrap: [AppComponent]
