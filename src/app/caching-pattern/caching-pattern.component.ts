@@ -6,6 +6,7 @@ import { from as observableFrom } from 'rxjs/observable/from';
 import { Subject } from 'rxjs/Subject';
 import { map, scan, mergeMap, last, filter, switchMap, concatMap, concat, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-caching-pattern',
@@ -48,13 +49,12 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
     } else {
       state.search.add = true;
       this.newResultsReturned ++;
-      state.search.data = this.dateData$.pipe(
+      state.search.data = new BehaviorSubject(this.dateData$).pipe(
         map((data: any) => {
-          return data.filter(d => this.dateIsBetween(state.search.beginDate, state.search.endDate, new Date(d.date)))
-        })
-      )
+          return data.value.filter(d => this.dateIsBetween(state.search.beginDate, state.search.endDate, new Date(d.date)))
+        }));
     }
-    return state.seach.data;
+    return state.search.data;
   }
 
   ngOnInit() {
@@ -82,7 +82,9 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
       ),
       // Using switch map so that if we make another request this one will be cancelled in favor of the new one
       switchMap(state => this.getData(state)),
-    ).subscribe(d => this.data = d);
+    ).subscribe(d => {
+      this.data = d
+    });
   }
   
   ngOnDestroy() {
