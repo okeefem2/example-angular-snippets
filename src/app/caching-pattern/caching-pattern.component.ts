@@ -37,11 +37,7 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
       s.endDate.getTime() === searchDates.endDate.getTime());
     // If we found a matching search in cache, set the current search so we have access to the data from that search
     // Otherwise use the current date values
-    if (filteredSearchCache.length > 0) {
-      state.search = filteredSearchCache[0];
-    } else {
-      state.search = searchDates;
-    }
+    state.search = filteredSearchCache.length > 0 ? filteredSearchCache[0] : searchDates;
     return state
   }
 
