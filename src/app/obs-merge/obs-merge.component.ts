@@ -40,19 +40,10 @@ export class ObsMergeComponent implements OnInit {
 
     const source = interval(500);
 
-    function filterOdd(source) {
-      return source.pipe(
+    function filterOdd(src) {
+      return src.pipe(
         filter((s: number) => s % 2 === 0)
       );
-      // return create((observer) => {
-      //   source.subscribe(
-      //     (value) => {
-      //       if (value % 2 === 0) {
-      //         observer.next(value);
-      //       }
-      //     }
-      //   )
-      // })
     }
 
     const odds = filterOdd(source);
