@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="center space-between">
+  <div fxFlex="45">
+    <app-subject-child-one></app-subject-child-one>
+  </div>
+  <div fxFlex="45">
+      <app-subject-child-one></app-subject-child-one>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-form-field>
+      <input matInput placeholder="Subject Value" type="text" [(ngModel)]="value">
+      <mat-error>
+        <strong>Valid email address is required to login</strong>
+      </mat-error>
+    </mat-form-field>
+  <button mat-raised-button color="primary" (click)="pushValue()">
+    Push Value
+  </button>
+</div>
+<!-- Use this section to see an example of a behavior subject pushing out the last value that was pushed -->
+<!-- by destroying and creating this third child -->
+<div fxLayout="row" fxLayoutAlign="center center">
+    <app-subject-child-one *ngIf="showThirdChild"></app-subject-child-one>
+    <button mat-raised-button color="primary" (click)="showThirdChild = !showThirdChild">
+      Toggle Third Child
+    </button>
+</div>
+
+

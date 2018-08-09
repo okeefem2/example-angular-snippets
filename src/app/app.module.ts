@@ -32,6 +32,8 @@ import { AverageOnPushOptPipe } from './pipe/average-onpush-opt.pipe';
 import { environment } from '../environments/environment.prod';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CachingPatternComponent } from './caching-pattern/caching-pattern.component';
+import { SubjectComponent } from './subject-as-observable/subject/subject.component';
+import { SubjectChildOneComponent } from './subject-as-observable/subject-child-one/subject-child-one.component';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
   { path: 'pipe-v-function', component: PipeVsFunctionComponent },
   { path: 'pipe-v-function-onpush', component: OnPushComponent },
   { path: 'onpush-optimization', component: OnPushOptimizationComponent },
-  { path: 'caching-pattern', component: CachingPatternComponent }
+  { path: 'caching-pattern', component: CachingPatternComponent },
+  { path: 'subject', component: SubjectComponent }
 ];
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ const appRoutes: Routes = [
     ComponentOptimizationComponent,
     OnPushOptimizationComponent,
     ScoreFormComponent,
-    CachingPatternComponent
+    CachingPatternComponent,
+    SubjectComponent,
+    SubjectChildOneComponent,
   ],
   imports: [
     FlexLayoutModule,
