@@ -1,12 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { dateData } from './date-data';
-import { of as observableOf } from 'rxjs/observable/of';
-import { from as observableFrom } from 'rxjs/observable/from';
-import { Subject } from 'rxjs/Subject';
-import { map, scan, mergeMap, last, filter, switchMap, concatMap, concat, take } from 'rxjs/operators';
-import { Subscription } from 'rxjs/Subscription';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { map, scan, switchMap } from 'rxjs/operators';
+import { Subscription, Subject, of as observableOf  } from 'rxjs';
 
 @Component({
   selector: 'app-caching-pattern',
@@ -25,21 +20,22 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
   searchSubscription: Subscription;
 
   dateIsBetween(start, end, date) {
+    debugger;
     return start <= date && date <= end;
   }
 
   updateState(state: any, searchDates: any): any {
-    // If a state search exists from the previous search and we want to add it to the cache 
+    // If a state search exists from the previous search and we want to add it to the cache
     if (state.search && state.search.add) {
       state.searchCache.push(state.search);
     }
     // Filter down the cache to match the current search dates
-    const filteredSearchCache = state.searchCache.filter(s => s.beginDate.getTime() === searchDates.beginDate.getTime() && 
+    const filteredSearchCache = state.searchCache.filter(s => s.beginDate.getTime() === searchDates.beginDate.getTime() &&
       s.endDate.getTime() === searchDates.endDate.getTime());
     // If we found a matching search in cache, set the current search so we have access to the data from that search
     // Otherwise use the current date values
     state.search = filteredSearchCache.length > 0 ? filteredSearchCache[0] : searchDates;
-    return state
+    return state;
   }
 
   getData(state: any) {
@@ -49,9 +45,11 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
     } else {
       state.search.add = true;
       this.newResultsReturned ++;
-      state.search.data = new BehaviorSubject(this.dateData$).pipe(
+      state.search.data = this.dateData$.pipe(
         map((data: any) => {
-          return data.value.filter(d => this.dateIsBetween(state.search.beginDate, state.search.endDate, new Date(d.date)))
+          console.log(data);
+          debugger;
+          return data.filter(d => this.dateIsBetween(state.search.beginDate, state.search.endDate, d.date));
         }));
     }
     return state.search.data;
@@ -60,13 +58,14 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Set up today and the beginning of the current month as the default date range
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     const beginningOfMonth = new Date(today);
     beginningOfMonth.setDate(1);
 
     // Create our two datepicker form controls setting the initial values
     this.beginDate = new FormControl(beginningOfMonth);
     this.endDate = new FormControl(today);
+    const dateData = this.createDateData();
     this.dateData$ = observableOf(dateData);
     this.search$ = new Subject();
 
@@ -76,19 +75,30 @@ export class CachingPatternComponent implements OnInit, OnDestroy {
       map(() => ({beginDate: this.beginDate.value, endDate: this.endDate.value})),
       // Pass those dates into scan, which also holds onto the current state (our cache of searches)
       scan(
-        (state, searchDates: any) => this.updateState(state, searchDates), 
+        (state, searchDates: any) => this.updateState(state, searchDates),
         // Set a initial value for state
         { searchCache: [], search: null }
       ),
       // Using switch map so that if we make another request this one will be cancelled in favor of the new one
       switchMap(state => this.getData(state)),
     ).subscribe(d => {
-      this.data = d
+      this.data = d;
     });
   }
-  
+
   ngOnDestroy() {
     this.searchSubscription.unsubscribe();
+  }
+
+  private createDateData() {
+    const dates = [];
+    while (dates.length < 24) {
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+      date.setMonth(dates.length);
+      dates.push({date, id: dates.length });
+    }
+    return dates;
   }
 }
 // rxjs-tslint

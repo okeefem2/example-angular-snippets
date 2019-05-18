@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
-import { interval } from 'rxjs/observable/interval';
-
+import { of, Observable, interval, forkJoin } from 'rxjs';
 import { mergeMap, filter } from 'rxjs/operators';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
   selector: 'app-obs-merge',
