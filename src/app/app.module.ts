@@ -34,6 +34,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CachingPatternComponent } from './caching-pattern/caching-pattern.component';
 import { SubjectComponent } from './subject-as-observable/subject/subject.component';
 import { SubjectChildOneComponent } from './subject-as-observable/subject-child-one/subject-child-one.component';
+import { ExampleComponentLibModule } from 'example-component-lib';
 
 const appRoutes: Routes = [
   { path: 'submit-button', component: SubmitButtonComponent },
@@ -73,6 +74,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    ExampleComponentLibModule,
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
   ],
   providers: [],

@@ -9,5 +9,13 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "paths": {
+    "example-component-lib": [
+      "../projects/example-component-lib/src/public_api"
+    ],
+    "example-component-lib/*": [
+      "../projects/example-component-lib/src/*"
+    ]
+  }
 }
